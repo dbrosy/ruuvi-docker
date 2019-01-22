@@ -69,5 +69,5 @@ services:
     image: ruuvi-collector
     container_name: ruuvi-collector
     privileged: true
-    network_mode: "host
+    network_mode: "host"
     
