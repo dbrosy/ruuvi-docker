@@ -59,3 +59,9 @@ services:
       KAPACITOR_URL: http://kapacitor:9092
     links:
       - kapacitor
+  # Define a service using Grafana
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
