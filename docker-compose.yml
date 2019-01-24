@@ -5,6 +5,7 @@ services:
   telegraf:
     image: telegraf:1.9.2
     container_name: ruuvi-telegraf
+    restart: unless-stopped
     volumes:
       - ./etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     links:
@@ -17,6 +18,7 @@ services:
   influxdb:
     image: influxdb:1.7.3
     container_name: ruuvi-influxdb
+    restart: unless-stopped
     volumes:
       - ./data/influxdb:/var/lib/influxdb
     ports:
@@ -25,6 +27,7 @@ services:
   chronograf:
     image: chronograf:1.7.7
     container_name: ruuvi-chronograf
+    restart: unless-stopped
     environment:
       INFLUXDB_URL: http://influxdb:8086
       KAPACITOR_URL: http://kapacitor:9092
@@ -37,6 +40,7 @@ services:
   kapacitor:
     image: kapacitor:1.5.2
     container_name: ruuvi-kapacitor
+    restart: unless-stopped
     environment:
       KAPACITOR_HOSTNAME: kapacitor
       KAPACITOR_INFLUXDB_0_URLS_0: http://influxdb:8086
@@ -49,6 +53,7 @@ services:
   influxdb-cli:
     image: influxdb:1.7.3
     container_name: ruuvi-influxdb-cli
+    restart: unless-stopped
     entrypoint:
       - influx
       - -host
@@ -60,6 +65,7 @@ services:
   kapacitor-cli:
     image: kapacitor:1.5.2
     container_name: ruuvi-kapacitor-cli
+    restart: unless-stopped
     entrypoint: bash
     environment:
       KAPACITOR_URL: http://kapacitor:9092
@@ -68,12 +74,14 @@ services:
   # Define a service using Grafana
   grafana:
     image: grafana/grafana
-    container_name: grafana
+    container_name: ruuvi-grafana
+    restart: unless-stopped
     ports:
       - "3000:3000"
   ruuvi-collector:
     image: ruuvi-collector
     container_name: ruuvi-collector
+    restart: unless-stopped
     privileged: true
     network_mode: "host"
     
