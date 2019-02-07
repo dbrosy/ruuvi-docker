@@ -7,7 +7,7 @@ services:
     container_name: ruuvi-telegraf
     restart: unless-stopped
     volumes:
-      - ./etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./config/etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     links:
       - influxdb
     ports:
