@@ -79,7 +79,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./config/grafana.ini:/etc/grafana/grafana.ini:ro
+      - ./config/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
       - ./config/grafana/provisioning/datasources/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
       - ruuvi_grafana-data:/var/lib/grafana
     links:
