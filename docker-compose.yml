@@ -81,9 +81,7 @@ services:
     volumes:
 #      - ./config/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
       - ./config/grafana/provisioning/datasources/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
-      - grafana-data:/var/lib/grafana
-    links:
-      - influxdb:influxdb      
+      - grafana-data:/var/lib/grafana     
   ruuvi-collector:
     image: ruuvi-collector
     container_name: ruuvi-collector
