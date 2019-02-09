@@ -81,7 +81,7 @@ services:
     volumes:
 #      - ./config/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
       - ./config/grafana/provisioning/datasources/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
-      - ruuvi_grafana-data:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     links:
       - influxdb:influxdb      
   ruuvi-collector:
@@ -92,4 +92,4 @@ services:
     network_mode: "host"
     
 volumes:
-  ruuvi_grafana-data:
+  grafana-data:
