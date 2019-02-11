@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  # Define an InfluxDB service
+  influxdb:
+    image: influxdb:1.7.3
+    container_name: ruuvi-influxdb
+    restart: unless-stopped
+    volumes:
+      - ./data/influxdb:/var/lib/influxdb
+    ports:
+      - "8086:8086"
+  # Define a Chronograf service
+  chronograf:
+    image: chronograf:1.7.7
+    container_name: ruuvi-chronograf
+    restart: unless-stopped
+    environment:
+      INFLUXDB_URL: http://influxdb:8086
+    ports:
+      - "8888:8888"
+    links:
+      - influxdb
+  # Define a service using Grafana
+  grafana:
+    image: grafana/grafana:5.4.3
+    container_name: ruuvi-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./config/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+      - ./config/grafana/provisioning/datasources/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+      - grafana-data:/var/lib/grafana
+  # Define a Ruuvi Collector service    
+  ruuvi-collector:
+    image: ruuvi-collector
+    container_name: ruuvi-collector
+    restart: unless-stopped
+    privileged: true
+    network_mode: "host"
+    
+volumes:
+  grafana-data:
