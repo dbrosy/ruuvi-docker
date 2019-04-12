@@ -23,7 +23,7 @@ services:
       - influxdb
   # Define a service using Grafana
   grafana:
-    image: grafana/grafana:6.0.1
+    image: grafana/grafana
     container_name: ruuvi-grafana
     restart: unless-stopped
     ports:
