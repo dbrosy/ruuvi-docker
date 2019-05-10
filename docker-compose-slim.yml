@@ -3,7 +3,7 @@ version: '3'
 services:
   # Define an InfluxDB service
   influxdb:
-    image: influxdb:1.7.4
+    image: "influxdb:${INFLUXDB_VERSION}"
     container_name: ruuvi-influxdb
     restart: unless-stopped
     volumes:
@@ -12,7 +12,7 @@ services:
       - "8086:8086"
   # Define a Chronograf service
   chronograf:
-    image: chronograf:1.7.8
+    image: "chronograf:${CRONOGRAF_VERSION}"
     container_name: ruuvi-chronograf
     restart: unless-stopped
     environment:
@@ -23,7 +23,7 @@ services:
       - influxdb
   # Define a service using Grafana
   grafana:
-    image: grafana/grafana
+    image: "grafana/grafana:${GRAFANA_VERSION}"
     container_name: ruuvi-grafana
     restart: unless-stopped
     ports:
