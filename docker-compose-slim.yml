@@ -34,7 +34,7 @@ services:
       - grafana-data:/var/lib/grafana
   # Define a Ruuvi Collector service    
   ruuvi-collector:
-    image: ruuvi-collector
+    image: ruuvi-collector:${RUUVI-COLLECTOR_VERSION}
     container_name: ruuvi-collector
     restart: unless-stopped
     privileged: true
