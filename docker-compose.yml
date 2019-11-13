@@ -91,7 +91,7 @@ services:
     environment:
       INFLUXDB_SERVER: ${INFLUXDB_SERVER}
     volumes:
-      - ./config/ruuvi/ruuvi-collector.properties:/ruuvi-collector.properties
+      - ./config/ruuvi/ruuvi-collector.properties:/ruuvi-collector.properties:ro
     
 volumes:
   grafana-data:
