@@ -89,7 +89,7 @@ services:
     privileged: true
     network_mode: "host"
     environment:
-      INFLUXDB_SERVER: ${INFLUXDB_SERVER}
+      INFLUXDB_SERVER: influxdb.home
     volumes:
       - ./config/ruuvi/ruuvi-collector.properties:/app/target/ruuvi-collector.properties:ro
     
