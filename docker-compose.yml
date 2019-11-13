@@ -88,6 +88,8 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: "host"
+    environment:
+      - INFLUXDB_SERVER: ${INFLUXDB_SERVER}
     volumes:
       - ./config/ruuvi/ruuvi-collector.properties:/ruuvi-collector.properties
     
