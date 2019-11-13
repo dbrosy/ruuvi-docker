@@ -39,6 +39,8 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: "host"
-    
+    volumes:
+      - ./config/ruuvi/ruuvi-collector.properties:/ruuvi-collector.properties
+
 volumes:
   grafana-data:
